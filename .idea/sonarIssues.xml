@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/MSCustomerAccountFija/src/main/java/co/com/claro/mscustomeraccountfija/pcml/domain/PCMLService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ValidadorPCML/src/main/java/co/com/claro/mscustaccountfijadaorr/dto/ResInvokePcmlDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ValidadorPCML/src/main/resources/CLRCAR53.pcml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ValidadorPCML/src/main/resources/TCSDGTR9.pcml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ValidadorPCML/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ValidarPCMLAntiguo/src/main/java/co/com/claro/mscustomeraccountfija/controller/MSCustomerAccountFijaController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ValidarPCMLAntiguo/src/main/java/co/com/claro/mscustomeraccountfija/pcml/domain/PCMLService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ValidarPCMLAntiguo/src/main/resources/TCSDGTR9.pcml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ValidarPCMLAntiguo/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ms_mtservice/src/main/java/co/com/claro/mtservice/controller/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ms_mtservice/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ms_mtservice/src/test/java/co/com/claro/mtservice/service/ClientMtServiceServiceTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../../Claro/Proyectos/ms_mtservice/src/test/java/co/com/claro/mtservice/service/ServiceTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/co/com/claro/msfuegoquasar/application/BillingInquiryApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/co/com/claro/msfuegoquasar/service/MSCusBillDetDAOParadigService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/MSFuegoQuasarApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/application/BillingInquiryApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/application/MessageIntersection.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/application/MessageIntersectionApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/config/SwaggerConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/controller/AppController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/dto/LocationDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/dto/RequestCookieDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/dto/RequestDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/dto/RequestTemporalDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/dto/ResponseDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/dto/ResponseMessageDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/dto/SatellitesDto.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/service/LocationTrilateration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/service/MSCusBillDetDAOParadigService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/meli/msfuegoquasar/service/SecretMessage.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/application.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/co/com/claro/application/BillingInquiryApplicationTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/co/com/claro/msfuegoquasar/service/MSCusBillDetDAOParadigServiceTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../trilateration-master/src/test/java/com/lemmingapex/trilateration/TrilaterationTestCases.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

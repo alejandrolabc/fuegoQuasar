@@ -1,0 +1,15 @@
+com\meli\msfuegoquasar\dto\LocationDto.class
+com\meli\msfuegoquasar\exceptions\BadRequestException.class
+com\meli\msfuegoquasar\config\SwaggerConfig.class
+com\meli\msfuegoquasar\application\MessageIntersectionApplication.class
+com\meli\msfuegoquasar\controller\AppController.class
+com\meli\msfuegoquasar\dto\ResponseDto.class
+com\meli\msfuegoquasar\service\LocationTrilateration.class
+com\meli\msfuegoquasar\MSFuegoQuasarApplication.class
+com\meli\msfuegoquasar\dto\RequestTemporalDto.class
+com\meli\msfuegoquasar\exceptions\FallbackMethodException.class
+com\meli\msfuegoquasar\dto\RequestDto.class
+com\meli\msfuegoquasar\config\SwaggerConfigProperties.class
+com\meli\msfuegoquasar\config\RestClientConfiguration.class
+com\meli\msfuegoquasar\service\SecretMessage.class
+com\meli\msfuegoquasar\dto\SatellitesDto.class
