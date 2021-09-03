@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MSFuegoQuasar</a> &gt; <a href="index.source.html" class="el_package">com.meli.msfuegoquasar.controller</a> &gt; <span class="el_source">AppController.java</span></div><h1>AppController.java</h1><pre class="source lang-java linenums">package com.meli.msfuegoquasar.controller;
+
+import com.meli.msfuegoquasar.application.MessageIntersectionApplication;
+import com.meli.msfuegoquasar.dto.RequestTemporalDto;
+import com.meli.msfuegoquasar.dto.RequestDto;
+import com.meli.msfuegoquasar.dto.ResponseDto;
+import com.meli.msfuegoquasar.dto.SatellitesDto;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+/***
+ * Clase controlador del microservicio
+ * @author Alejandro Balaguera
+ *
+ */
+@RestController
+@RequestMapping
+<span class="nc" id="L27">public class AppController {</span>
+
+    @Autowired
+    private MessageIntersectionApplication app;
+
+    //Variable de clase para almacenar la información de los satelites que lleguen
+    // por el path topsecret_split
+    List&lt;SatellitesDto&gt; satellites;
+
+    /**
+     * Recurso que determina la posición y el mensaje de la nave imperial.
+     * &lt;p&gt;
+     * Esta clase implementa la ruta del microservicio así como el método por el cual lo expone
+     * Además requiere parametros de consulta
+     *
+     * @author Alejandro Balaguera
+     * @param request, de tipo RequestDto
+     * @return {@link ResponseEntity &lt;ResponseDto&gt; response}
+     **/
+    @PostMapping(&quot;/topsecret/&quot;)
+    @ApiOperation(value = &quot;Recurso que retorna el mensaje secreto y su posicion.&quot;, notes = &quot;&quot;, response = ResponseDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, response = ResponseDto.class, message = &quot;OK&quot;),
+            @ApiResponse(code = 400, response = ResponseDto.class, message = &quot;Bad request&quot;),
+            @ApiResponse(code = 404, response = ResponseDto.class, message = &quot;Not found&quot;),
+            @ApiResponse(code = 500, response = ResponseDto.class, message = &quot;Internal server error&quot;),
+            @ApiResponse(code = 504, response = ResponseDto.class, message = &quot;Gateway timeout&quot;)})
+    public ResponseEntity&lt;ResponseDto&gt; getMessageIntersection(@RequestBody RequestDto request) {
+        //Se llama el metodo de la capa de aplicacion para recibir la posicion y el mensaje
+<span class="nc" id="L56">        ResponseDto response = app.getMessageAndPosition(request.getSatellites());</span>
+        //Se valida si fue posible determinar la posicion y el mensaje
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (Objects.nonNull(response)) {</span>
+<span class="nc" id="L59">            return new ResponseEntity&lt;&gt;(response, HttpStatus.OK);</span>
+        } else {
+<span class="nc" id="L61">            return new ResponseEntity&lt;&gt;(response, HttpStatus.NOT_FOUND);</span>
+        }
+    }
+
+    /**
+     * Recurso via post que determina la posición y el mensaje de la nave imperial por medio
+     * de varias peticiones, las cuales, va almacenando en memoria hasta completar la información
+     * necesaria para poder determinar la posición y el mensaje.
+     * &lt;p&gt;
+     * Esta clase implementa la ruta del microservicio así como el método por el cual lo expone
+     * Además requiere parametros de consulta
+     *
+     * @author Alejandro Balaguera
+     * @param name, de tipo String y contiene el nombre del satellite
+     * @param request, de tipo RequestTemporalDto que contiene la distancia y el mensaje del satelite en cuestion
+     * @return {@link ResponseEntity &lt;ResponseDto&gt; response}
+     **/
+    @PostMapping(&quot;/topsecret_split/{satellite_name}&quot;)
+    @ApiOperation(value = &quot;Recurso que retorna el mensaje secreto y su posicion. pero por medio de diferentes&quot; +
+            &quot;peticiones, almacenando en cache, los datos de los satelites&quot;, notes = &quot;&quot;, response = ResponseDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, response = ResponseDto.class, message = &quot;OK&quot;),
+            @ApiResponse(code = 400, response = ResponseDto.class, message = &quot;Bad request&quot;),
+            @ApiResponse(code = 404, response = ResponseDto.class, message = &quot;Not found&quot;),
+            @ApiResponse(code = 500, response = ResponseDto.class, message = &quot;Internal server error&quot;),
+            @ApiResponse(code = 504, response = ResponseDto.class, message = &quot;Gateway timeout&quot;)})
+    public ResponseEntity&lt;ResponseDto&gt; getMessageIntersectionByTemporal(@PathVariable(&quot;satellite_name&quot;) String name,
+                                                                      @RequestBody RequestTemporalDto request) {
+<span class="nc" id="L89">        ResponseDto response = null;</span>
+        // Se inicializa la lista temporal en caso de estar vacia
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (satellites == null) satellites = new ArrayList&lt;&gt;();</span>
+
+        // Se valida si ya tiene la información de los 3 satelites
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (satellites.size() &gt;= 3) {</span>
+<span class="nc" id="L95">            response = app.getMessageAndPosition(satellites);</span>
+        } else {
+            // Se valida si de la información que tiene, ya se tiene información
+            // del satelite que llega
+<span class="nc" id="L99">            Boolean existe = false;</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            for (SatellitesDto s : satellites) {</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">                if (s.getName().equals(name)) {</span>
+<span class="nc" id="L102">                    existe = true;</span>
+<span class="nc" id="L103">                    break;</span>
+                }
+<span class="nc" id="L105">            }</span>
+            // Si no se tiene información de ese satelite se agrega
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (Boolean.FALSE.equals(existe)) {</span>
+<span class="nc" id="L108">                satellites.add(new SatellitesDto(name, request.getDistance(), request.getMessage()));</span>
+                //Se valida si ya tiene la información de los 3 satelites para determinar posicion y mensaje
+<span class="nc bnc" id="L110" title="All 2 branches missed.">                if (satellites.size() &gt;= 3) response = app.getMessageAndPosition(satellites);</span>
+            }
+        }
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (Objects.nonNull(response)) {</span>
+            //Si se pudo determinar la posicion y el mensaje, se vacia la lista y se retorna la informacion con
+            // un codigo 200 de que el aplicativo se ejecuto correctamente
+<span class="nc" id="L116">            satellites = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L117">            return new ResponseEntity&lt;&gt;(response, HttpStatus.OK);</span>
+        } else {
+<span class="nc" id="L119">            response = new ResponseDto();</span>
+<span class="nc" id="L120">            response.setMessage(&quot;No fue posible determinar la posición o el mensaje, datos de satelites incompletos&quot;);</span>
+<span class="nc" id="L121">            return new ResponseEntity&lt;&gt;(response, HttpStatus.NOT_FOUND);</span>
+        }
+    }
+
+    /**
+     * Recurso via get que determina la posición y el mensaje de la nave imperial por medio
+     * de varias peticiones, las cuales, va almacenando en memoria hasta completar la información
+     * necesaria para poder determinar la posición y el mensaje.
+     * &lt;p&gt;
+     * Esta clase implementa la ruta del microservicio así como el método por el cual lo expone
+     * Además requiere parametros de consulta
+     *
+     * @author Alejandro Balaguera
+     * @param name, de tipo String y contiene el nombre del satellite
+     * @param distance, de tipo Double que contiene la distancia del satelite en cuestion
+     * @param message, de tipo String que contiene el mensaje del satelite en cuestion
+     * @return {@link ResponseEntity &lt;ResponseDto&gt; response}
+     **/
+    @GetMapping(&quot;/topsecret_split/{satellite_name}&quot;)
+    @ApiOperation(value = &quot;Recurso que retorna el mensaje secreto y su posicion. pero por medio de diferentes&quot; +
+            &quot;peticiones, almacenando en cache, los datos de los satelites&quot;, notes = &quot;&quot;, response = ResponseDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, response = ResponseDto.class, message = &quot;OK&quot;),
+            @ApiResponse(code = 400, response = ResponseDto.class, message = &quot;Bad request&quot;),
+            @ApiResponse(code = 404, response = ResponseDto.class, message = &quot;Not found&quot;),
+            @ApiResponse(code = 500, response = ResponseDto.class, message = &quot;Internal server error&quot;),
+            @ApiResponse(code = 504, response = ResponseDto.class, message = &quot;Gateway timeout&quot;)})
+    public ResponseEntity&lt;ResponseDto&gt; getMessageIntersectionByTemporal(@PathVariable(&quot;satellite_name&quot;) String name,
+                                                                        @RequestParam() Double distance,
+                                                                        @RequestParam() String message) {
+<span class="nc" id="L151">        ResponseDto response = null;</span>
+        // Se inicializa la lista temporal en caso de estar vacia
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (satellites == null) satellites = new ArrayList&lt;&gt;();</span>
+
+        // Se valida si ya tiene la información de los 3 satelites
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        if (satellites.size() &gt;= 3) {</span>
+<span class="nc" id="L157">            response = app.getMessageAndPosition(satellites);</span>
+        } else {
+            // Se valida si de la información que tiene, ya se tiene información
+            // del satelite que llega
+<span class="nc" id="L161">            Boolean existe = false;</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            for (SatellitesDto s : satellites) {</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">                if (s.getName().equals(name)) {</span>
+<span class="nc" id="L164">                    existe = true;</span>
+<span class="nc" id="L165">                    break;</span>
+                }
+<span class="nc" id="L167">            }</span>
+            // Si no se tiene información de ese satelite se agrega
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (Boolean.FALSE.equals(existe)) {</span>
+                //Se hace un split del message para almacenarlo en una lista
+<span class="nc" id="L171">                String[] split = message.split(&quot;,&quot;);</span>
+<span class="nc" id="L172">                List&lt;String&gt; messages = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                for(String m: split){</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">                    if(m.equals(&quot; &quot;)){</span>
+<span class="nc" id="L175">                        messages.add(&quot;&quot;);</span>
+                    } else {
+<span class="nc" id="L177">                        messages.add(m);</span>
+                    }
+                }
+<span class="nc" id="L180">                satellites.add(new SatellitesDto(name, distance, messages));</span>
+                //Se valida si ya tiene la información de los 3 satelites para determinar posicion y mensaje
+<span class="nc bnc" id="L182" title="All 2 branches missed.">                if (satellites.size() &gt;= 3) response = app.getMessageAndPosition(satellites);</span>
+            }
+        }
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        if (Objects.nonNull(response)) {</span>
+            //Si se pudo determinar la posicion y el mensaje, se vacia la lista y se retorna la informacion con
+            // un codigo 200 de que el aplicativo se ejecuto correctamente
+<span class="nc" id="L188">            satellites = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L189">            return new ResponseEntity&lt;&gt;(response, HttpStatus.OK);</span>
+        } else {
+<span class="nc" id="L191">            response = new ResponseDto();</span>
+<span class="nc" id="L192">            response.setMessage(&quot;No fue posible determinar la posición o el mensaje, datos de satelites incompletos&quot;);</span>
+<span class="nc" id="L193">            return new ResponseEntity&lt;&gt;(response, HttpStatus.NOT_FOUND);</span>
+        }
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

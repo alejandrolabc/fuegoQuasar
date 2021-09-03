@@ -4,6 +4,7 @@ import com.meli.msfuegoquasar.dto.LocationDto;
 import com.meli.msfuegoquasar.exceptions.BadRequestException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.exception.HystrixTimeoutException;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
+@Setter
 public class LocationTrilateration {
 
     // Se toman las ubicaciones de los satelites definidas en el archivo de propiedades
@@ -43,11 +45,11 @@ public class LocationTrilateration {
      * mucho o tenga algun problema durante su funcionamiento, se detenga
      * y no siga consumiendo maquina.
      *
-     * @author Alejandro Balaguera
      * @param distance1, de tipo double
      * @param distance2, de tipo double
      * @param distance3, de tipo double
      * @return {@link LocationDto LocationDto}
+     * @author Alejandro Balaguera
      **/
     @HystrixCommand(fallbackMethod = "defaultGetLocation", groupKey = "MSFueqoQuasar",
             commandKey = "MSFueqoQuasar")
@@ -132,8 +134,11 @@ public class LocationTrilateration {
             jval += (t1 * t2);
         }
         xval = (Math.pow(distance1, 2) - Math.pow(distance2, 2) + Math.pow(d, 2)) / (2 * d);
-        yval = ((Math.pow(distance1, 2) - Math.pow(distance3, 2) + Math.pow(ival, 2) + Math.pow(jval, 2)) / (2 * jval)) - ((ival / jval) * xval);
-
+        if (jval > 0) {
+            yval = ((Math.pow(distance1, 2) - Math.pow(distance3, 2) + Math.pow(ival, 2) + Math.pow(jval, 2)) / (2 * jval)) - ((ival / jval) * xval);
+        } else {
+            yval = 1;
+        }
         t1 = Double.valueOf(kenobiLongitude);
         t2 = ex[0] * xval;
         t3 = ey[0] * yval;

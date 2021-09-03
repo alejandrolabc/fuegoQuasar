@@ -188,6 +188,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/com/meli/msfuegoquasar/application/MessageIntersectionApplicationTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/com/meli/msfuegoquasar/service/LocationTrilaterationTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/com/meli/msfuegoquasar/service/SecretMessageTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../trilateration-master/src/test/java/com/lemmingapex/trilateration/TrilaterationTestCases.java">
           <value>
             <set />

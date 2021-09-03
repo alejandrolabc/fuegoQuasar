@@ -1,0 +1,6 @@
+projectKey=com.meli:msfuegoquasar
+serverUrl=http://localhost:9000
+serverVersion=8.9.0.43852
+dashboardUrl=http://localhost:9000/dashboard?id=com.meli%3Amsfuegoquasar
+ceTaskId=AXur349gz37_jQDqzu0X
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXur349gz37_jQDqzu0X

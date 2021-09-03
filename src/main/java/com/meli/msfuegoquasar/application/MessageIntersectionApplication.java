@@ -7,7 +7,6 @@ import com.meli.msfuegoquasar.service.LocationTrilateration;
 import com.meli.msfuegoquasar.service.SecretMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class MessageIntersectionApplication {
      * @return {@link ResponseDto responseMessage}
      **/
     public ResponseDto getMessageAndPosition(List<SatellitesDto> satellites) {
-        ResponseDto responseMessage = new ResponseDto();
+        var responseMessage = new ResponseDto();
         LocationDto position;
         //Declarar las 3 distancias
         var d1 = 0.0;
@@ -57,6 +56,8 @@ public class MessageIntersectionApplication {
                     break;
                 case "sato":
                     d3 = s.getDistance();
+                    break;
+                default:
                     break;
             }
         }

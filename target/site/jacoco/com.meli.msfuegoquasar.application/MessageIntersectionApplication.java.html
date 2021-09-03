@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MessageIntersectionApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MSFuegoQuasar</a> &gt; <a href="index.source.html" class="el_package">com.meli.msfuegoquasar.application</a> &gt; <span class="el_source">MessageIntersectionApplication.java</span></div><h1>MessageIntersectionApplication.java</h1><pre class="source lang-java linenums">package com.meli.msfuegoquasar.application;
+
+import com.meli.msfuegoquasar.dto.LocationDto;
+import com.meli.msfuegoquasar.dto.ResponseDto;
+import com.meli.msfuegoquasar.dto.SatellitesDto;
+import com.meli.msfuegoquasar.service.LocationTrilateration;
+import com.meli.msfuegoquasar.service.SecretMessage;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+/***
+ * Clase componente que sirve para orquestar las dos clases servicio
+ * @author Alejandro Balaguera
+ *
+ */
+@Component
+<span class="fc" id="L22">@Slf4j</span>
+<span class="fc" id="L23">public class MessageIntersectionApplication {</span>
+
+    @Autowired
+    private LocationTrilateration locationService;
+    @Autowired
+    private SecretMessage messageService;
+
+    /**
+     * Metodo que recibe la información de los 3 satelites para
+     * consumir el servicio getLocation y getMessage de los dos
+     * servicios de la capa Service, para retornar la posicion y
+     * el mensaje armado.
+     *
+     * @author Alejandro Balaguera
+     * @param satellites, de tipo List SatellitesDto
+     * @return {@link ResponseDto responseMessage}
+     **/
+    public ResponseDto getMessageAndPosition(List&lt;SatellitesDto&gt; satellites) {
+<span class="fc" id="L41">        var responseMessage = new ResponseDto();</span>
+        LocationDto position;
+        //Declarar las 3 distancias
+<span class="fc" id="L44">        var d1 = 0.0;</span>
+<span class="fc" id="L45">        var d2 = 0.0;</span>
+<span class="fc" id="L46">        var d3 = 0.0;</span>
+        //Se recorre la información de los satelites para asignar la
+        //distancia de acuerdo al nombre del mismo
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for (SatellitesDto s : satellites) {</span>
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">            switch (s.getName()) {</span>
+                case &quot;kenobi&quot;:
+<span class="fc" id="L52">                    d1 = s.getDistance();</span>
+<span class="fc" id="L53">                    break;</span>
+                case &quot;skywalker&quot;:
+<span class="fc" id="L55">                    d2 = s.getDistance();</span>
+<span class="fc" id="L56">                    break;</span>
+                case &quot;sato&quot;:
+<span class="fc" id="L58">                    d3 = s.getDistance();</span>
+<span class="fc" id="L59">                    break;</span>
+                default:
+                    break;
+            }
+<span class="fc" id="L63">        }</span>
+        // Se le envian las distancias al metodo que retorna la posición
+<span class="fc" id="L65">        position = locationService.getLocation(d1, d2, d3);</span>
+        // Se declara una lista con los arrays que trae los fragmentos del
+        // mensaje de cada satelite
+<span class="fc" id="L68">        List&lt;List&lt;String&gt;&gt; msgSend = new ArrayList&lt;&gt;();</span>
+        // Se unifican los arrays de mensajes en una sola lista
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        for (SatellitesDto s : satellites) {</span>
+<span class="fc" id="L71">            msgSend.add(s.getMessage());</span>
+<span class="fc" id="L72">        }</span>
+        // Se le envia esa lista al metodo que retorna en un String el mensaje
+        // ya completo y descifrado
+<span class="fc" id="L75">        String secretMessage = messageService.getMessage(msgSend);</span>
+        // Se valida que tanto la posición, como el mensaje se hayan podido determinar
+<span class="pc bpc" id="L77" title="1 of 4 branches missed.">        if (Objects.nonNull(position) &amp;&amp; Objects.nonNull(secretMessage)) {</span>
+<span class="fc" id="L78">            responseMessage.setPosition(position);</span>
+<span class="fc" id="L79">            responseMessage.setMessage(secretMessage);</span>
+        }
+        // Retorna la información procesada
+<span class="fc" id="L82">        return responseMessage;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+MSFuegoQuasar,com.meli.msfuegoquasar.service,SecretMessage,0,143,2,18,0,24,2,12,0,4
+MSFuegoQuasar,com.meli.msfuegoquasar.service,LocationTrilateration,2,425,1,17,1,72,1,18,0,10
+MSFuegoQuasar,com.meli.msfuegoquasar,MSFuegoQuasarApplication,8,0,0,0,3,0,2,0,2,0
+MSFuegoQuasar,com.meli.msfuegoquasar.application,MessageIntersectionApplication,0,98,2,10,0,25,2,8,0,3
+MSFuegoQuasar,com.meli.msfuegoquasar.controller,AppController,259,0,34,0,49,0,21,0,4,0
+MSFuegoQuasar,com.meli.msfuegoquasar.dto,ResponseDto,104,11,22,0,2,2,17,3,6,3
+MSFuegoQuasar,com.meli.msfuegoquasar.dto,RequestTemporalDto,115,0,22,0,3,0,20,0,9,0
+MSFuegoQuasar,com.meli.msfuegoquasar.dto,LocationDto,96,9,10,0,3,1,13,1,8,1
+MSFuegoQuasar,com.meli.msfuegoquasar.dto,SatellitesDto,143,24,30,0,1,5,20,7,5,7
+MSFuegoQuasar,com.meli.msfuegoquasar.dto,RequestDto,75,0,14,0,2,0,14,0,7,0
+MSFuegoQuasar,com.meli.msfuegoquasar.exceptions,FallbackMethodException,13,0,0,0,6,0,3,0,3,0
+MSFuegoQuasar,com.meli.msfuegoquasar.exceptions,BadRequestException,9,4,0,0,4,2,2,1,2,1
+MSFuegoQuasar,com.meli.msfuegoquasar.config,SwaggerConfig,107,0,0,0,13,0,4,0,4,0
+MSFuegoQuasar,com.meli.msfuegoquasar.config,RestClientConfiguration,7,0,0,0,2,0,2,0,2,0
+MSFuegoQuasar,com.meli.msfuegoquasar.config,SwaggerConfigProperties,598,0,118,0,44,0,92,0,33,0

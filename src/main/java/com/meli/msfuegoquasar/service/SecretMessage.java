@@ -1,6 +1,5 @@
 package com.meli.msfuegoquasar.service;
 
-import com.meli.msfuegoquasar.dto.LocationDto;
 import com.meli.msfuegoquasar.exceptions.BadRequestException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.exception.HystrixTimeoutException;
