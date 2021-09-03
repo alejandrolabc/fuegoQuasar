@@ -40,7 +40,7 @@ El proyecto se encuentra en un repositorio GitLab, para poderlo descargar se deb
 
 ## [](#configuracion)Configuracion
 
-Para que el microservicio funcione correctamente, se debe validar que en el archivo de propiedades se le tenga valor a las propiedades de kenobi.longitude, kenobi.latitude, skywalker.longitude, skywalker.latitude, sato.longitude y sato.latitude, las cuales contienen la posición de los satelites que se usaran para determinar luego la posición.
+Para que el microservicio funcione correctamente, se debe tener instalado lombok en el IDE con el que se probara el codigo; también se debe validar que en el archivo de propiedades se le tenga valor a las propiedades de kenobi.longitude, kenobi.latitude, skywalker.longitude, skywalker.latitude, sato.longitude y sato.latitude, las cuales contienen la posición de los satelites que se usaran para determinar luego la posición.
 
 ## [](#compilación)Compilación
 
